@@ -1,4 +1,5 @@
 using EDH.Shared;
+using EDH.Shared.Modelos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EDH.Comun.Modelos
+﻿namespace EDH.Shared.Modelos
 {
-    internal class Movimiento
+    public class Movimiento
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
@@ -14,6 +8,8 @@ namespace EDH.Comun.Modelos
         public Subcategoria Subcategoria { get; set; }
         public string Descripcion { get; set; }
         public string FormaPago { get; set; }
+        public decimal Importe { get; set; }
+
         public Cuenta Cuenta { get; set; }
 
 

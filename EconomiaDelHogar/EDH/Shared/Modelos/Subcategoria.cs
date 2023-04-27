@@ -1,4 +1,4 @@
-﻿namespace EDH.Comun.Modelos
+﻿namespace EDH.Shared.Modelos
 {
     public class Subcategoria
     {

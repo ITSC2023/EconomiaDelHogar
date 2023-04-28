@@ -9,8 +9,6 @@
 
 
 <h3>Categorias</h3>
-<p>Completa los campos para agregar una nueva categoria</p>
-<button>Agregar</button>
 
 @if (categorias == null)
 {
@@ -18,12 +16,12 @@
 }
 else
 {
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Color</th>
-                
+
             </tr>
         </thead>
         <tbody>
@@ -32,11 +30,32 @@ else
                 <tr>
                     <td>@categoria.Nombre</td>
                     <td>@categoria.Color</td>
+                    <div class="d-grid gap-2 d-md-block">
+                        <td><button class="btn btn-success"><i class="bi bi-pencil-square"></i></button></td>
+                        <td><button class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                    </div>
                 </tr>
+
             }
         </tbody>
     </table>
 }
+
+
+<p>Completa los campos para agregar una nueva categoria</p>
+
+<div class="row">
+    <div class="col">
+        <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre de la Categoria">
+    </div>
+    <div class="col">
+        <input type="text" class="form-control" placeholder="Color" aria-label="Color">
+    </div>
+</div>
+
+<button type="button" class="btn btn-outline-primary">Agregar</button>
+
+
 
 @code {
 
@@ -53,9 +72,9 @@ else
         {
             exception.Redirect();
         }
-        
-        
+
+
     }
-    
-    
+
+
 }

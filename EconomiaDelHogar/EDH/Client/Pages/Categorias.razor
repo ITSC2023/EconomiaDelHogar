@@ -1,0 +1,61 @@
+﻿@page "/categorias"
+@using EDH.Shared.Modelos;
+@using EDH.Shared.Modelos;
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using EDH.Shared
+@attribute [Authorize]
+@inject HttpClient Http
+
+
+<h3>Categorias</h3>
+<p>Completa los campos para agregar una nueva categoria</p>
+<button>Agregar</button>
+
+@if (categorias == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Color</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var categoria in categorias)
+            {
+                <tr>
+                    <td>@categoria.Nombre</td>
+                    <td>@categoria.Color</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private Categoria[]? categorias;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            categorias = await Http.GetFromJsonAsync<Categoria[]>("Categorias");
+
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+        
+        
+    }
+    
+    
+}

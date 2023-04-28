@@ -1,0 +1,69 @@
+﻿@page "/Presupuestos"
+@using EDH.Shared.Modelos;
+@using EDH.Shared.Modelos;
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using EDH.Shared
+@attribute [Authorize]
+@inject HttpClient Http
+
+<h3>Presupuestos</h3>
+
+
+@if (presupuestos == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Tipo</th>
+                <th>Divisa</th>
+                <th>Monto</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha de Cierre</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var presupuesto in presupuestos)
+            {
+                <tr>
+                    <td>@presupuesto.Titulo</td>
+                    <td>@presupuesto.Tipo</td>
+                    <td>@presupuesto.Divisa</td>
+                    <td>@presupuesto.Monto</td>
+                    <td>@presupuesto.FechaInicio</td>
+                    <td>@presupuesto.FechaCierre</td>
+
+                    <div class="d-grid gap-2 d-md-block">
+                    <td><button class="btn btn-success"><i class="bi bi-pencil-square"></i></button></td>
+                    <td><button class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                    </div>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+@code {
+    private Presupuesto[]? presupuestos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            presupuestos = await Http.GetFromJsonAsync<Presupuesto[]>("Presupuestos");
+
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+
+
+    }
+}

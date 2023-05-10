@@ -8,7 +8,7 @@ namespace EDH.Server.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("/api/controller")]
     public class CategoriasController : ControllerBase
     {
         private readonly ILogger<Categoria> _logger;
@@ -19,6 +19,16 @@ namespace EDH.Server.Controllers
             _logger = logger;
             _context = context;
         }
+
+        //INSERTA REGISTROS EN LA BASE DE DATOS
+        [HttpPost]
+        public async Task<ActionResult> PostAsync(Categoria categorias)
+        {
+            _context.Add(categorias);
+            await _context.SaveChangesAsync();
+            return Ok(categorias);
+        }
+
 
         [HttpGet]
         public IEnumerable<Categoria> Get()

@@ -1,5 +1,5 @@
 using EDH.Server.Data;
-using EDH.Server.Models;
+using EDH.Shared.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;

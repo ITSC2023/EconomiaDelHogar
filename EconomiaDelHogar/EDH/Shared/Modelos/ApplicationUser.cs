@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace EDH.Server.Models
+namespace EDH.Shared.Models
 {
     public class ApplicationUser : IdentityUser
     {

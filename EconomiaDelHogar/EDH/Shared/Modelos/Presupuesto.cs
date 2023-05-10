@@ -16,5 +16,6 @@ namespace EDH.Shared.Modelos
         public List<Categoria> Categorias { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaCierre { get; set; }
+        public Grupo? Grupo { get; set; }
     }
 }

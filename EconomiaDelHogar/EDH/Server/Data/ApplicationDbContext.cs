@@ -1,8 +1,9 @@
 ﻿
 
 using Duende.IdentityServer.EntityFramework.Options;
-using EDH.Server.Models;
+ 
 using EDH.Shared.Modelos;
+using EDH.Shared.Models;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -24,5 +25,19 @@ namespace EDH.Server.Data
         public DbSet<Subcategoria> Subcategorias { get; set; }
         public DbSet<Tarjeta> Tarjetas { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Categoria>().HasIndex(x=>x.Nombre).IsUnique();
+        }
+
+
     }
+
+
+   
+
+
+
 }

@@ -1,4 +1,6 @@
 ﻿@page "/fetchdata"
+@using EDH.Shared.Modelos;
+@using EDH.Shared.Modelos;
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using EDH.Shared
@@ -40,14 +42,47 @@ else
     </table>
 }
 
+
+
+@if (movimientos == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Categoria</th>
+                <th>Forma Pago</th>
+                <th>Importe</th> 
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movimiento in movimientos)
+            {
+                <tr>
+                    <td>@movimiento.Fecha.ToShortDateString()</td>
+                    <td>@movimiento.Categoria.Nombre</td>
+                    <td>@movimiento.FormaPago</td>
+                    <td>@movimiento.Importe</td> 
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 @code {
     private WeatherForecast[]? forecasts;
+    private Movimiento[]? movimientos;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
             forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+            movimientos = await Http.GetFromJsonAsync<Movimiento[]>("Movimientos");
+
         }
         catch (AccessTokenNotAvailableException exception)
         {

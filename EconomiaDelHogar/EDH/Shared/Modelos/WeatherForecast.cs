@@ -1,4 +1,4 @@
-namespace EDH.Shared
+namespace EDH.Shared.Modelos
 {
     public class WeatherForecast
     {

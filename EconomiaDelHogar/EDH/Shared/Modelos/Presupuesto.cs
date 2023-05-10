@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDH.Comun.Modelos
+namespace EDH.Shared.Modelos
 {
-    internal class Presupuesto
+    public class Presupuesto
     {
         public int Id { get; set; }
         public string Titulo { get; set; }

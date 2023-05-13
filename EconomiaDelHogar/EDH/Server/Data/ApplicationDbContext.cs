@@ -24,5 +24,12 @@ namespace EDH.Server.Data
         public DbSet<Subcategoria> Subcategorias { get; set; }
         public DbSet<Tarjeta> Tarjetas { get; set; }
 
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<Categoria>().HasIndex(x => x.Nombre).IsUnique();
+        }
     }
 }

@@ -2,13 +2,12 @@ using EDH.Server.Data;
 using EDH.Shared.Modelos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace EDH.Server.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/categorias")]
     public class CategoriasController : ControllerBase
     {
         private readonly ILogger<Categoria> _logger;
@@ -23,7 +22,17 @@ namespace EDH.Server.Controllers
         [HttpGet]
         public IEnumerable<Categoria> Get()
         {
+            _logger.LogInformation("Se llamo al Get de Categorias");
             return _context.Categorias.ToList();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Post(Categoria categoria)
+        {
+
+            _context.Categorias.Add(categoria);
+            await _context.SaveChangesAsync();
+            return Ok(categoria);
         }
     }
 }

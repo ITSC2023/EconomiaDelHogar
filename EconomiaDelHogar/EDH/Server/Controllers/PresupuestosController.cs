@@ -2,7 +2,6 @@ using EDH.Server.Data;
 using EDH.Shared.Modelos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace EDH.Server.Controllers
 {
